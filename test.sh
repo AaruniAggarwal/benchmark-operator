@@ -82,7 +82,7 @@ sed -i "s/kind: Benchmark/kind: Benchmark-$UUID/g" watches.yaml
 sed -i "s/backpack_role/backpack_role-$UUID/g" resources/backpack_role.yaml
 sed -i "s/my-ripsaw/my-ripsaw-$UUID-test-fiod/g" resources/kernel-cache-drop-daemonset.yaml
 grep -Rl "kind: Benchmark" roles/ | xargs sed -i "s/kind: Benchmark/kind: Benchmark-$UUID/g"
-sed -i "s|          image: quay.io/benchmark-operator/benchmark-operator:master*|          image: $image_location/$image_account/benchmark-operator:$tag_name # |" resources/operator.yaml
+sed -i "s|          image: quay.io/multi-arch/benchmark-operator:latest*|          image: $image_location/$image_account/benchmark-operator:$tag_name # |" resources/operator.yaml
 
 cp -pr * gold/
 
