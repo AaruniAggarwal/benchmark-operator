@@ -130,9 +130,9 @@ function pod_count () {
 
 function apply_operator {
   operator_requirements
-  BENCHMARK_OPERATOR_IMAGE=${BENCHMARK_OPERATOR_IMAGE:-"quay.io/benchmark-operator/benchmark-operator:master"}
+  BENCHMARK_OPERATOR_IMAGE=${BENCHMARK_OPERATOR_IMAGE:-"quay.io/multi-arch/benchmark-operator:latest"}
   cat resources/operator.yaml | \
-    sed 's#quay.io/benchmark-operator/benchmark-operator:master#'$BENCHMARK_OPERATOR_IMAGE'#' | \
+    sed 's#quay.io/multi-arch/benchmark-operator:latest#'$BENCHMARK_OPERATOR_IMAGE'#' | \
     kubectl apply -f -
   kubectl wait --for=condition=available "deployment/benchmark-operator" -n my-ripsaw --timeout=300s
 }
@@ -219,7 +219,7 @@ function update_operator_image {
     echo "Could not build image. Exiting"
     exit 1
   fi
-  sed -i "s|          image: quay.io/benchmark-operator/benchmark-operator:master*|          image: $image_location/$image_account/benchmark-operator:$tag_name # |" resources/operator.yaml
+  sed -i "s|          image: quay.io/multi-arch/benchmark-operator:latest*|          image: $image_location/$image_account/benchmark-operator:$tag_name # |" resources/operator.yaml
 }
 
 function check_log(){
