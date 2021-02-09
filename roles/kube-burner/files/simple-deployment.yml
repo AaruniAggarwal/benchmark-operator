@@ -18,7 +18,7 @@ spec:
       - args:
         - sleep
         - infinity
-        image: quay.io/cloud-bulldozer/hello-openshift:latest
+        image: quay.io/multi-arch/cloud-bulldozer:hello-openshift
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
